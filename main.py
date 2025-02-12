@@ -1,8 +1,12 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtCore import Qt
+
 from ui.main_menu import Ui_TaskSelect
 from graph_method import GraphMethodApp
+from root_finding_comparison import RootFindingComparisonApp
+from jacobi_method import JacobiMethodApp
+
 
 class TaskSelectApp(QMainWindow, Ui_TaskSelect):
     def __init__(self):
@@ -26,10 +30,12 @@ class TaskSelectApp(QMainWindow, Ui_TaskSelect):
         self.active_window.show()
 
     def root_finding_comparison(self):
-        print("Comparison of Root-Finding Methods")
+        self.active_window = RootFindingComparisonApp()
+        self.active_window.show()
 
     def jacobi_method(self):
-        print("Jacobi Method")
+        self.active_window = JacobiMethodApp()
+        self.active_window.show()
 
     def iterative_matrix_inversion(self):
         print("Iterative Method for Matrix Inversion")

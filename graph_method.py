@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from PyQt6.QtWidgets import QMainWindow, QApplication
@@ -57,7 +56,7 @@ class GraphMethodApp(QMainWindow, Ui_GraphMethod):
             def f(x):
                 return eval(expr, {"x": x, "np": np})
 
-            exact_root = secant_method(f, x_start, x_end)
+            exact_root = self.secant_method(f, x_start, x_end)
 
             approx_root = float(self.approx_root_text_edit.toPlainText())
 
@@ -69,16 +68,8 @@ class GraphMethodApp(QMainWindow, Ui_GraphMethod):
         except Exception as e:
             print("Error calculation error:", e)
 
-
-def secant_method(f, x0, x1, tol=1e-6):
-    while abs(f(x1)) > tol:
-        x_temp = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
-        x0, x1 = x1, x_temp
-    return x1
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = GraphMethodApp()
-    window.show()
-    sys.exit(app.exec())
+    def secant_method(self, f, x0, x1, tol=1e-6):
+        while abs(f(x1)) > tol:
+            x_new = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
+            x0, x1 = x1, x_new
+        return x1
