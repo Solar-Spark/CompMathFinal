@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TaskSelect</class>
+ <widget class="QMainWindow" name="TaskSelect">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>340</width>
+    <height>302</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Choose task</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="graph_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Graphical Method and Absolute Error</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="root_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Comparison of Root-Finding Methods</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="jacobi_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Jacobi Method</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="iterative_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string> Iterative Method for Matrix Inversion</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="linear_curve_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Linear Curve Fitting</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="forward_interpolation_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Newton’s Forward Interpolation Formula</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="derivative_forward_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>First Derivative Using Newton’s Forward Difference Formula</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="trapezoidal_button">
+        <property name="minimumSize">
+         <size>
+          <width>320</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Trapezoidal Rule</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
