@@ -2,6 +2,7 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtCore import Qt
 
+from matrix_inversion import MatrixInversionApp
 from ui.main_menu import Ui_TaskSelect
 from graph_method import GraphMethodApp
 from root_finding_comparison import RootFindingComparisonApp
@@ -19,7 +20,7 @@ class TaskSelectApp(QMainWindow, Ui_TaskSelect):
         self.graph_button.clicked.connect(self.graphical_method)
         self.root_button.clicked.connect(self.root_finding_comparison)
         self.jacobi_button.clicked.connect(self.jacobi_method)
-        self.iterative_button.clicked.connect(self.iterative_matrix_inversion)
+        self.iterative_button.clicked.connect(self.matrix_inversion)
         self.linear_curve_button.clicked.connect(self.linear_curve_fitting)
         self.forward_interpolation_button.clicked.connect(self.newton_forward_interpolation)
         self.derivative_forward_button.clicked.connect(self.newton_forward_derivative)
@@ -37,8 +38,9 @@ class TaskSelectApp(QMainWindow, Ui_TaskSelect):
         self.active_window = JacobiMethodApp()
         self.active_window.show()
 
-    def iterative_matrix_inversion(self):
-        print("Iterative Method for Matrix Inversion")
+    def matrix_inversion(self):
+        self.active_window = MatrixInversionApp()
+        self.active_window.show()
 
     def linear_curve_fitting(self):
         print("Linear Curve Fitting")

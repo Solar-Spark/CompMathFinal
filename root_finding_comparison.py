@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox
 from ui.root_finding_comparison import Ui_RootFindingComparison
 
 
@@ -46,7 +46,7 @@ class RootFindingComparisonApp(QMainWindow, Ui_RootFindingComparison):
                 self.error_label.setText("Error")
 
         except Exception as e:
-            print("Error in calculation:", e)
+            self.show_error(f"Unexpected Error: {e}")
 
     def bisection_method(self, f, a, b, tol=1e-6):
         if f(a) * f(b) >= 0:
@@ -78,3 +78,10 @@ class RootFindingComparisonApp(QMainWindow, Ui_RootFindingComparison):
             x0, x1 = x1, x_new
 
         return x1, iterations
+
+    def show_error(self, message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.exec()

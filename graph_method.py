@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 from ui.graph_method import Ui_GraphMethod
@@ -45,7 +45,7 @@ class GraphMethodApp(QMainWindow, Ui_GraphMethod):
             self.graph_label.setScaledContents(True)
 
         except Exception as e:
-            print("Graph creation error:", e)
+            self.show_error(f"Unexpected Error: {e}")
 
     def calculate_error(self):
         try:
@@ -73,3 +73,10 @@ class GraphMethodApp(QMainWindow, Ui_GraphMethod):
             x_new = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
             x0, x1 = x1, x_new
         return x1
+
+    def show_error(self, message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.exec()

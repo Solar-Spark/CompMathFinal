@@ -1,6 +1,6 @@
 import sys
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
+from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
 from ui.jacobi_method import Ui_JacobiMethod
 
 
@@ -47,17 +47,16 @@ class JacobiMethodApp(QMainWindow, Ui_JacobiMethod):
                 x0[j] = float(self.initial_guess_table.item(0, j).text())
 
             solution = self.jacobi_method(a, b, x0, tol=1e-6, max_iter=100)
-
+            self.solution_table.setRowCount(1)
+            self.solution_table.setColumnCount(n)
             if isinstance(solution, np.ndarray):
-                self.solution_table.setRowCount(1)
-                self.solution_table.setColumnCount(n)
                 for j in range(n):
                     self.solution_table.setItem(0, j, QTableWidgetItem(f"{solution[j]:.6f}"))
             else:
                 for j in range(n):
                     self.solution_table.setItem(0, j, QTableWidgetItem("No conv"))
         except Exception as e:
-            print("Error:", e)
+            self.show_error(f"Unexpected Error: {e}")
 
     def jacobi_method(self, a, b, x0, tol=1e-6, max_iter=1000):
         n = len(a)
@@ -75,3 +74,10 @@ class JacobiMethodApp(QMainWindow, Ui_JacobiMethod):
             x = np.copy(x_new)
 
         return "No convergence"
+
+    def show_error(self, message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.exec()
