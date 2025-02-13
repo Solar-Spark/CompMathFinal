@@ -16,7 +16,6 @@ class TrapezoidalRuleApp(QDialog, Ui_TrapezoidalRule):
             a = float(self.lineEdit_a.text().strip())
             b = float(self.lineEdit_b.text().strip())
             n = int(self.lineEdit_n.text().strip())
-            x_value = float(self.lineEdit_x.text().strip())
             
             if n <= 0:
                 raise ValueError("Number of subintervals must be positive.")
@@ -27,11 +26,9 @@ class TrapezoidalRuleApp(QDialog, Ui_TrapezoidalRule):
             
             integral_approx = (h / 2) * (y_values[0] + 2 * np.sum(y_values[1:-1]) + y_values[-1])
             exact_value = (b**3 / 3 + b**2 / 2) - (a**3 / 3 + a**2 / 2)
-            function_value = self.function(x_value)
             
             result_text = (f"<b>Approximate Integral:</b> {integral_approx:.6f}<br>"
                            f"<b>Exact Integral:</b> {exact_value:.6f}<br>"
-                           f"<b>Function Value at x={x_value}:</b> {function_value:.6f}<br>"
                            f"<b>Error:</b> {abs(integral_approx - exact_value):.6f}")
             self.label_result.setText(result_text)
         
