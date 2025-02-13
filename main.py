@@ -7,6 +7,8 @@ from ui.main_menu import Ui_TaskSelect
 from graph_method import GraphMethodApp
 from root_finding_comparison import RootFindingComparisonApp
 from jacobi_method import JacobiMethodApp
+from newton_forward_derivative import NewtonForwardDerivativeApp
+from trapezoidal_rule import TrapezoidalRuleApp
 
 
 class TaskSelectApp(QMainWindow, Ui_TaskSelect):
@@ -49,10 +51,12 @@ class TaskSelectApp(QMainWindow, Ui_TaskSelect):
         print("Newton’s Forward Interpolation Formula ")
 
     def newton_forward_derivative(self):
-        print("First Derivative Using Newton’s Forward Difference Formula")
+        self.active_window = NewtonForwardDerivativeApp()
+        self.active_window.show()
 
     def trapezoidal_rule(self):
-        print("Trapezoidal Rule")
+        self.active_window = TrapezoidalRuleApp()
+        self.active_window.show()
 
 
 if __name__ == "__main__":
