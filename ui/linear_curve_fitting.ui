@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LinearCurveFitting</class>
+ <widget class="QDialog" name="LinearCurveFitting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Linear Curve Fitting</string>
+  </property>
+  <widget class="QWidget" name="">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_x">
+      <property name="text">
+       <string>Enter X values (comma-separated):</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="x_input"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_y">
+      <property name="text">
+       <string>Enter Y values (comma-separated):</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="y_input"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="plot_button">
+      <property name="text">
+       <string>Plot Fit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="plot_area">
+      <property name="text">
+       <string>Graph will be displayed here</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
