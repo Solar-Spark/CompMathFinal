@@ -1,6 +1,5 @@
-import sys
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QMessageBox
 from ui.jacobi_method import Ui_JacobiMethod
 
 
@@ -10,6 +9,7 @@ class JacobiMethodApp(QMainWindow, Ui_JacobiMethod):
         self.setupUi(self)
 
         self.size_spinbox.setValue(3)
+        self.iterations_spinbox.setValue(1000)
         self.size_spinbox.valueChanged.connect(self.update_table_size)
 
         self.solve_button.clicked.connect(self.solve_system)
@@ -46,10 +46,13 @@ class JacobiMethodApp(QMainWindow, Ui_JacobiMethod):
             for j in range(n):
                 x0[j] = float(self.initial_guess_table.item(0, j).text())
 
-            solution = self.jacobi_method(a, b, x0, tol=1e-6, max_iter=100)
+            max_iter = self.iterations_spinbox.value()
+
+            solution = self.jacobi_method(a, b, x0, 1e-6, max_iter)
             self.solution_table.setRowCount(1)
             self.solution_table.setColumnCount(n)
-            if isinstance(solution, np.ndarray):
+
+            if solution != "no conv":
                 for j in range(n):
                     self.solution_table.setItem(0, j, QTableWidgetItem(f"{solution[j]:.6f}"))
             else:
@@ -59,21 +62,19 @@ class JacobiMethodApp(QMainWindow, Ui_JacobiMethod):
             self.show_error(f"Unexpected Error: {e}")
 
     def jacobi_method(self, a, b, x0, tol=1e-6, max_iter=1000):
-        n = len(a)
-        x = np.copy(x0)
-        x_new = np.zeros_like(x)
-
+        n = len(b)
+        x = x0
         for _ in range(max_iter):
+            x_new = np.zeros_like(x)
             for i in range(n):
-                sum_ax = sum(a[i][j] * x[j] for j in range(n) if j != i)
-                x_new[i] = (b[i] - sum_ax) / a[i][i]
+                summation = sum(a[i][j] * x[j] for j in range(n) if j != i)
+                x_new[i] = (b[i] - summation) / a[i][i]
 
             if np.linalg.norm(x_new - x, ord=np.inf) < tol:
-                return x_new.round(6)
+                return x_new
+            x = x_new
 
-            x = np.copy(x_new)
-
-        return "No convergence"
+        return "no conv"
 
     def show_error(self, message):
         msg = QMessageBox()

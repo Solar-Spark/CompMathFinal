@@ -13,6 +13,8 @@ class Ui_MatrixInversion(object):
     def setupUi(self, MatrixInversion):
         MatrixInversion.setObjectName("MatrixInversion")
         MatrixInversion.resize(562, 497)
+        MatrixInversion.setMinimumSize(QtCore.QSize(562, 497))
+        MatrixInversion.setMaximumSize(QtCore.QSize(562, 497))
         self.layoutWidget = QtWidgets.QWidget(parent=MatrixInversion)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 541, 481))
         self.layoutWidget.setObjectName("layoutWidget")

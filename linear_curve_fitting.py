@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox
+from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 from ui.linear_curve_fitting import Ui_LinearCurveFitting
@@ -12,7 +12,7 @@ class LinearCurveFittingApp(QDialog, Ui_LinearCurveFitting):
         self.setupUi(self)
         self.plot_button.clicked.connect(self.plot_fit)
 
-        self.plot_area.setFixedSize(600, 400)
+        self.plot_area.setFixedSize(400, 400)
 
     def plot_fit(self):
         try:
@@ -22,29 +22,30 @@ class LinearCurveFittingApp(QDialog, Ui_LinearCurveFitting):
             if not x_str or not y_str:
                 raise ValueError("Please enter both x and y values.")
 
-            x_values = np.array(list(map(float, x_str.split(','))))
-            y_values = np.array(list(map(float, y_str.split(','))))
+            x = np.array(list(map(float, x_str.split(','))))
+            y = np.array(list(map(float, y_str.split(','))))
 
-            if len(x_values) != len(y_values):
+            if len(x) != len(y):
                 raise ValueError("Number of x and y values must be equal.")
-            if len(x_values) < 2:
+            if len(x) < 2:
                 raise ValueError("At least two points are required for linear fitting.")
 
-            coefficients = np.polyfit(x_values, y_values, 1)
-            slope, intercept = coefficients
-            fitted_y = slope * x_values + intercept
+            coefficients = np.polyfit(x, y, 1)
+            m, c = coefficients
+            fit_curve = m * x + c
 
-            plt.figure(figsize=(10, 8), dpi=100)
-            plt.scatter(x_values, y_values, color='red', label='Data Points')
-            plt.plot(x_values, fitted_y, color='blue', label=f'Fit: y = {slope:.3f}x + {intercept:.3f}')
-            plt.xlabel("X values", fontsize=14)
-            plt.ylabel("Y values", fontsize=14)
-            plt.legend(fontsize=14)
-            plt.title("Linear Curve Fitting", fontsize=16)
+            plt.figure(figsize=(4, 4))
+            plt.scatter(x, y, color='red', label='Data Points')
+            plt.plot(x, fit_curve, color='blue', label=f'Fit: y = {m:.3f}x + {c:.3f}')
+            plt.axhline(0, color='black', linewidth=1)
+            plt.axvline(0, color='black', linewidth=1)
+            plt.xlabel("X")
+            plt.ylabel("Y")
+            plt.legend()
+            plt.title("Linear Curve Fitting")
             plt.grid(True)
-
-            plot_path = "linear_fit.png"
-            plt.savefig(plot_path, dpi=150, bbox_inches='tight')
+            plot_path = "graph.png"
+            plt.savefig(plot_path, bbox_inches='tight')
             plt.close()
 
             pixmap = QPixmap(plot_path)
@@ -54,4 +55,4 @@ class LinearCurveFittingApp(QDialog, Ui_LinearCurveFitting):
             self.plot_area.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         except Exception as e:
-            QMessageBox.critical(self, "Error", str(e))
+            QMessageBox.critical(self, "Error: ", str(e))

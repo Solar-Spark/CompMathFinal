@@ -4,110 +4,213 @@
  <widget class="QDialog" name="NewtonForwardDerivative">
   <property name="geometry">
    <rect>
-    <x>100</x>
-    <y>100</y>
-    <width>400</width>
-    <height>300</height>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>340</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>First Derivative (Newton’s Forward Difference)</string>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>340</height>
+   </size>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" spacing="15">
-    <property name="margin">
-     <number>15</number>
-    </property>
+  <property name="maximumSize">
+   <size>
+    <width>300</width>
+    <height>340</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>First Derivative Using Newton’s Forward Difference Formula </string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>266</width>
+     <height>311</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Input Parameters</string>
-      </property>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_x">
-         <property name="text">
-          <string>x values (comma-separated):</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_x">
-         <property name="placeholderText">
-          <string>e.g., 0,1,2</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_y">
-         <property name="text">
-          <string>y values (comma-separated):</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_y">
-         <property name="placeholderText">
-          <string>e.g., 1,8,27</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>250</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter X-Values (Comma-separated):</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="x_values_input">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_calculate">
-      <property name="text">
-       <string>Calculate dy/dx at Middle Point</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font-weight: bold; background-color: white; color: black; border: 1px solid black; padding: 5px;</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>250</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter Y-Values (Comma-separated):</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="y_values_input">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <spacer>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>250</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter X value:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="x_value_input">
+        <property name="minimumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>260</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="calculate_button">
+      <property name="minimumSize">
        <size>
-        <width>20</width>
-        <height>10</height>
+        <width>260</width>
+        <height>30</height>
        </size>
       </property>
-     </spacer>
+      <property name="maximumSize">
+       <size>
+        <width>260</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Calculate</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox_2">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_result_title">
-         <property name="text">
-          <string>Result:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignLeft</set>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font-size: 12px; font-weight: bold; padding-bottom: 5px;</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_result">
-         <property name="text">
-          <string>Result will be displayed here</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font-size: 14px; color: #2c3e50; background-color: #f1f1f1; padding: 10px; border-radius: 5px;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+     <widget class="QLabel" name="result_label">
+      <property name="minimumSize">
+       <size>
+        <width>260</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Result will be displayed here</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>

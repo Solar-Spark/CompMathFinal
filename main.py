@@ -1,8 +1,8 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtCore import Qt
-
+from linear_curve_fitting import LinearCurveFittingApp
 from matrix_inversion import MatrixInversionApp
+from newton_interpolation import NewtonInterpolationApp
 from ui.main_menu import Ui_TaskSelect
 from graph_method import GraphMethodApp
 from root_finding_comparison import RootFindingComparisonApp
@@ -45,10 +45,12 @@ class TaskSelectApp(QMainWindow, Ui_TaskSelect):
         self.active_window.show()
 
     def linear_curve_fitting(self):
-        print("Linear Curve Fitting")
+        self.active_window = LinearCurveFittingApp()
+        self.active_window.show()
 
     def newton_forward_interpolation(self):
-        print("Newton’s Forward Interpolation Formula ")
+        self.active_window = NewtonInterpolationApp()
+        self.active_window.show()
 
     def newton_forward_derivative(self):
         self.active_window = NewtonForwardDerivativeApp()

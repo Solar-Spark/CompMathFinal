@@ -6,47 +6,133 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>340</width>
+    <height>390</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>340</width>
+    <height>390</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>340</width>
+    <height>390</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Newton's Forward Interpolation</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>302</width>
+     <height>351</height>
+    </rect>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="label_x">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Enter X values (comma-separated):</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="x_input"/>
+     <widget class="QLineEdit" name="x_input">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_y">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Enter Y values (comma-separated):</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="y_input"/>
+     <widget class="QLineEdit" name="y_input">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_interp">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Enter X value to interpolate:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="interp_input"/>
+     <widget class="QLineEdit" name="interp_input">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QPushButton" name="compute_button">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>30</height>
+       </size>
+      </property>
       <property name="text">
        <string>Compute Interpolation</string>
       </property>
@@ -54,8 +140,28 @@
     </item>
     <item>
      <widget class="QLabel" name="result_label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Result will be displayed here</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>

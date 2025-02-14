@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from ui.root_finding_comparison import Ui_RootFindingComparison
 
 
@@ -7,9 +7,6 @@ class RootFindingComparisonApp(QMainWindow, Ui_RootFindingComparison):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.function_text_edit.setPlainText("x**2 - 5")
-        self.xstart_text_edit.setPlainText("2")
-        self.xend_text_edit.setPlainText("3")
 
         self.calculate_button.clicked.connect(self.calculate_root)
 

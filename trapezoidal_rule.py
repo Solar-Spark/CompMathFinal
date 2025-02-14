@@ -1,36 +1,54 @@
 import numpy as np
-from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from ui.trapezoidal_rule import Ui_TrapezoidalRule
+from scipy.integrate import quad
 
-class TrapezoidalRuleApp(QDialog, Ui_TrapezoidalRule):
+
+class TrapezoidalRuleApp(QMainWindow, Ui_TrapezoidalRule):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.pushButton_calculate.clicked.connect(self.calculate_integral)
-    
-    def function(self, x):
-        return x**2 + x
 
-    def calculate_integral(self):
+        self.calculate_button.clicked.connect(self.compute_integral)
+
+    def compute_integral(self):
         try:
-            a = float(self.lineEdit_a.text().strip())
-            b = float(self.lineEdit_b.text().strip())
-            n = int(self.lineEdit_n.text().strip())
-            
+            function = self.function_input.text()
+
+            def f(x):
+                return eval(function, {"x": x, "np": np})
+
+            lower_limit = float(self.lower_limit_input.text())
+            upper_limit = float(self.upper_limit_input.text())
+
+            n = int(self.subintervals_number_input.text())
             if n <= 0:
-                raise ValueError("Number of subintervals must be positive.")
-            
-            h = (b - a) / n
-            x_values = np.linspace(a, b, n + 1)
-            y_values = self.function(x_values)
-            
-            integral_approx = (h / 2) * (y_values[0] + 2 * np.sum(y_values[1:-1]) + y_values[-1])
-            exact_value = (b**3 / 3 + b**2 / 2) - (a**3 / 3 + a**2 / 2)
-            
-            result_text = (f"<b>Approximate Integral:</b> {integral_approx:.6f}<br>"
-                           f"<b>Exact Integral:</b> {exact_value:.6f}<br>"
-                           f"<b>Error:</b> {abs(integral_approx - exact_value):.6f}")
-            self.label_result.setText(result_text)
-        
+                raise ValueError("Number of subintervals must be more than 0")
+
+            integral_value = self.trapezoidal_rule(f, lower_limit, upper_limit, n)
+
+            exact_value, _ = quad(f, lower_limit, upper_limit)
+
+            error = abs(float(exact_value) - integral_value)
+
+            self.calculated_value_label.setText(f"{integral_value:.6f}")
+            self.exact_value_label.setText(f"{exact_value:.6f}")
+            self.error_label.setText(f"{error:.6f}")
+
         except Exception as e:
-            QMessageBox.critical(self, "Error", str(e))
+            self.show_error(f"Input Error: {e}")
+
+    def trapezoidal_rule(self, f, a, b, n):
+        h = (b - a) / n
+        x_values = np.linspace(a, b, n + 1)
+        y_values = f(x_values)
+
+        integral = h * (y_values[0] + 2 * sum(y_values[1:-1]) + y_values[-1])/2
+        return integral
+
+    def show_error(self, message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.exec()

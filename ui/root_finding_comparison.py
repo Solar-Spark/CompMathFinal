@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'root_finding_comparison.ui'
+# Form implementation generated from reading ui file '.\root_finding_comparison.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.1
 #

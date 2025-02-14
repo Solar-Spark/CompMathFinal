@@ -1,45 +1,48 @@
 import numpy as np
-from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from ui.newton_forward_derivative import Ui_NewtonForwardDerivative
 
-class NewtonForwardDerivativeApp(QDialog, Ui_NewtonForwardDerivative):
+
+class NewtonForwardDerivativeApp(QMainWindow, Ui_NewtonForwardDerivative):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.pushButton_calculate.clicked.connect(self.calculate_derivative)
 
-    def calculate_derivative(self):
+        self.calculate_button.clicked.connect(self.compute_derivative)
+
+    def compute_derivative(self):
         try:
-            x_str = self.lineEdit_x.text().strip()
-            y_str = self.lineEdit_y.text().strip()
-            
-            if not x_str or not y_str:
-                raise ValueError("Please enter both x and y values.")
-            
-            x_values = list(map(float, x_str.split(',')))
-            y_values = list(map(float, y_str.split(',')))
+            x_str = self.x_values_input.text().strip()
+            y_str = self.y_values_input.text().strip()
+            x_values = np.array(list(map(float, x_str.split(','))))
+            y_values = np.array(list(map(float, y_str.split(','))))
 
-            if len(x_values) != len(y_values):
-                raise ValueError("Number of x and y values must be equal.")
-            if len(x_values) < 3:
-                raise ValueError("At least three points are required.")
-            
+            x_target = float(self.x_value_input.text())
+
+            if x_target not in x_values:
+                raise ValueError(f"x={x_target} not found in the dataset.")
+
+            index = np.where(x_values == x_target)[0][0]
+
             h = x_values[1] - x_values[0]
-            for i in range(1, len(x_values)-1):
-                if not np.isclose(x_values[i+1] - x_values[i], h):
-                    raise ValueError("x values must be equally spaced.")
-            
-            mid_index = len(x_values) // 2
-            target_x = x_values[mid_index]
-            
-            delta_y0 = y_values[1] - y_values[0]
-            delta2_y0 = y_values[2] - 2 * y_values[1] + y_values[0]
-            
-            derivative = (delta_y0 / h) - (delta2_y0 / (2 * h))
-            
-            self.label_result.setText(
-                f"<b>dy/dx at x={target_x:.2f}</b>: {derivative:.6f}"
-            )
-        
+
+            if index == 0:
+                derivative = (y_values[index + 1] - y_values[index]) / h
+            elif index == len(x_values) - 1:
+                derivative = (y_values[index] - y_values[index - 1]) / h
+            else:
+                derivative = (y_values[index + 1] - y_values[index - 1]) / (2 * h)
+
+            self.result_label.setText(f"dy/dx at x={x_target} ≈ {derivative:.6f}")
+
+        except ValueError as ve:
+            self.show_error(f"Input Error: {ve}")
         except Exception as e:
-            QMessageBox.critical(self, "Error", str(e))
+            self.show_error(f"Unexpected Error: {e}")
+
+    def show_error(self, message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.exec()

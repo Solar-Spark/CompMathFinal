@@ -1,8 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox
-from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QDialog, QMessageBox
 from ui.newton_forward_interpolation import Ui_NewtonInterpolation
 
 class NewtonInterpolationApp(QDialog, Ui_NewtonInterpolation):
@@ -49,11 +46,11 @@ class NewtonInterpolationApp(QDialog, Ui_NewtonInterpolation):
 
         result = y[0]
         factorial = 1
-        p_product = 1
+        product = 1
 
         for i in range(1, n):
             factorial *= i
-            p_product *= (p - (i - 1))
-            result += (p_product * diff_table[0][i]) / factorial
+            product *= (p - (i - 1))
+            result += (product * diff_table[0][i]) / factorial
 
         return result

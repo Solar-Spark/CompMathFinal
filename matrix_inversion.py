@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QMessageBox
 from ui.matrix_inversion import Ui_MatrixInversion
 
 
