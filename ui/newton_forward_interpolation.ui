@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewtonInterpolation</class>
+ <widget class="QDialog" name="NewtonInterpolation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Newton's Forward Interpolation</string>
+  </property>
+  <widget class="QWidget" name="">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_x">
+      <property name="text">
+       <string>Enter X values (comma-separated):</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="x_input"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_y">
+      <property name="text">
+       <string>Enter Y values (comma-separated):</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="y_input"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_interp">
+      <property name="text">
+       <string>Enter X value to interpolate:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="interp_input"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="compute_button">
+      <property name="text">
+       <string>Compute Interpolation</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="result_label">
+      <property name="text">
+       <string>Result will be displayed here</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
